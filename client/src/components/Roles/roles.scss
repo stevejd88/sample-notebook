@@ -1,0 +1,44 @@
+@import "../../utilities/scss/utils.scss";
+
+#roles-container {
+  .role-sum-team-manager {
+    h2 {
+      color: $red;
+    }
+  }
+
+  .role-sum-recorder {
+    h2 {
+      color: $green;
+    }
+  }
+
+  .role-sum-runner {
+    h2 {
+      color: $light-blue;
+    }
+  }
+
+  .role-sum-checker {
+    h2 {
+      color: $purple;
+    }
+  }
+
+  img {
+    margin-bottom: 1rem;
+  }
+
+  li {
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+
+  .stars {
+    color: $pink;
+  }
+
+  .stars strong {
+    color: black;
+  }
+}

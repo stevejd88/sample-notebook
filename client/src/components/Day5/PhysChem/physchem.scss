@@ -1,0 +1,130 @@
+@import "../../../utilities/scss/utils.scss";
+
+#phys-chem-container {
+  .phys-chem {
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    max-width: 100%;
+    @include mq("md") {
+      @include flex-me($dir: row, $just: space-between);
+    }
+
+    h4 {
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    }
+
+    .phys-change-inner {
+      @include flex-me($dir: column, $just: space-between);
+    }
+
+    .form-group,
+    p {
+      text-align: left;
+    }
+
+    .form-group {
+      @include mq("md") {
+        max-width: 95%;
+        margin: 0 auto;
+      }
+    }
+
+    input {
+      text-align: center;
+    }
+
+    input {
+      max-width: 75%;
+    }
+
+    textarea {
+      max-width: 100%;
+    }
+  }
+
+  .physical-change {
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    max-width: 100%;
+    @include roundy($bord: 3px solid $green, $rad: 5px, $p: 1rem);
+    @include mq("md") {
+      max-width: 48%;
+      margin-bottom: 0;
+    }
+
+    .phy-change-span {
+      color: $green;
+    }
+  }
+
+  .chemical-change {
+    margin: 0 auto;
+    max-width: 100%;
+    @include roundy($bord: 3px solid $purple, $rad: 5px, $p: 1rem);
+    @include mq("md") {
+      max-width: 48%;
+    }
+
+    .chem-change-span {
+      color: $purple;
+    }
+  }
+
+  .identify-phys {
+    color: $green;
+  }
+
+  .identify-chem {
+    color: $purple;
+  }
+
+  .change-identify {
+    margin: 0 auto;
+    @include flex-me($dir: column, $just: center);
+    @include mq("md") {
+      @include flex-me($dir: row, $just: space-between, $wrap: wrap);
+    }
+
+    .form-row {
+      display: block;
+    }
+
+    .identify-item {
+      margin-bottom: 1rem;
+      @include roundy($bord: 4px double $grey-plus, $rad: 5px, $p: 0.5rem);
+      @include mq("md") {
+        flex-basis: 45%;
+      }
+
+      .form-row {
+        margin-top: 0.75rem;
+      }
+
+      input {
+        max-width: 80%;
+        text-align: center;
+        @include mq("md") {
+          max-width: 60%;
+        }
+      }
+    }
+
+    .item-p,
+    .item-c {
+      margin: 0 auto;
+      max-width: 20%;
+      @include mq("md") {
+        max-width: 17%;
+      }
+      @include mq("lg") {
+        max-width: 13%;
+      }
+    }
+
+    .circled-it {
+      border: 2px solid black;
+    }
+  }
+}

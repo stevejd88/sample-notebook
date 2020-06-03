@@ -1,0 +1,78 @@
+@import "../../../utilities/scss/utils.scss";
+
+#pop-container {
+  h3 {
+    color: $purple;
+  }
+
+  .pop-mission-top {
+    margin-bottom: 2rem;
+    @include mq("md") {
+      @include flex-me($dir: row, $just: space-between);
+      align-items: flex-start;
+    }
+    img {
+      max-width: 50%;
+      @include mq("md") {
+        max-width: 40%;
+      }
+      @include mq("lg") {
+        max-width: 30%;
+      }
+    }
+
+    p {
+      text-align: left;
+    }
+  }
+
+  .mission-statement span {
+    color: $secondary-color;
+  }
+
+  .pop-jobs {
+    @include flex-me($dir: column, $just: center);
+    @include mq("md") {
+      margin-bottom: 1rem;
+      @include roundy($bord: 4px groove $orange, $rad: 5px, $p: 1rem);
+    }
+    h3,
+    h4 {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      color: $orange;
+      font-weight: bold;
+    }
+
+    input {
+      text-align: center;
+    }
+
+    .pop-jobs-top {
+      margin-bottom: 1rem;
+      .form-group {
+        text-align: center;
+      }
+      align-self: center;
+    }
+
+    .form-group {
+      text-align: left;
+    }
+
+    li {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .pop-chem-eng {
+    flex-direction: column;
+
+    h4 {
+      align-self: flex-start;
+    }
+  }
+
+  .pop-jobs-description {
+    margin-bottom: 1rem;
+  }
+}

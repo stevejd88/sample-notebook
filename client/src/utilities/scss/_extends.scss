@@ -1,0 +1,16 @@
+%heading {
+  font-family: $font-stack-primary;
+  color: $primary-color;
+  -webkit-font-smoothing: antialiased;
+}
+
+%heading2 {
+  font-family: $font-stack-primary;
+  color: $secondary-color;
+  -webkit-font-smoothing: antialiased;
+}
+
+%btn {
+  background-color: $secondary-color-light;
+  color: #fff;
+}

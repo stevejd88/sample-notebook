@@ -1,0 +1,40 @@
+@import "../../../utilities/scss/utils.scss";
+
+#phases-matter-container {
+  .phases-fillin {
+    border-bottom: 3px dotted black;
+    padding-bottom: 2rem;
+    max-width: 80%;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    img {
+      margin-bottom: 1rem;
+      @include mq("md") {
+        max-width: 50%;
+      }
+      @include mq("xl") {
+        max-width: 40%;
+      }
+    }
+  }
+
+  .phases-change {
+    label {
+      text-align: left;
+    }
+  }
+
+  .phases-heat-div {
+    margin-bottom: 1rem;
+  }
+
+  .phases-kinetic-div {
+    input {
+      text-align: center;
+      max-width: 60%;
+    }
+    p {
+      text-align: left;
+    }
+  }
+}

@@ -1,0 +1,72 @@
+@import "../../../utilities/scss/utils.scss";
+
+#light-energy-container {
+  .light-predict {
+    background-color: $light-grey;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    @include flex-me($dir: column, $just: center);
+    @include mq("md") {
+      @include flex-me($dir: row, $just: center, $wrap: wrap);
+    }
+  }
+
+  .light-heading {
+    text-align: left;
+  }
+
+  .light-predict-item {
+    @include flex-me($dir: row, $just: center);
+    margin-right: 1rem;
+    p {
+      margin-right: 0.5rem;
+      font-weight: bold;
+    }
+
+    .light-yn input {
+      margin-right: 0.25rem;
+    }
+    .light-yn label {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .btns-scu {
+    margin-bottom: 0.5rem;
+  }
+
+  .light-observe-div {
+    margin: 0 auto;
+    max-width: 100%;
+    @include mq("lg") {
+      @include flex-me($dir: row, $just: space-between, $wrap: wrap);
+    }
+  }
+
+  .light-wood-canvas,
+  .light-paper-canvas,
+  .light-mirrors-canvas,
+  .light-water-canvas {
+    margin-bottom: 1rem;
+  }
+
+  .light-observe-item {
+    @include roundy($bord: 1px solid $grey, $rad: 5px, $p: 1rem);
+    margin-bottom: 2rem;
+    max-width: 100%;
+    @include flex-me($dir: column, $just: center);
+    @include mq("lg") {
+      max-width: 40%;
+    }
+
+    h3 {
+      color: $red;
+    }
+  }
+
+  .form-group {
+    @include flex-me($dir: column, $just: center, $wrap: wrap);
+    width: 100%;
+  }
+}

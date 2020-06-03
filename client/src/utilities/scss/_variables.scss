@@ -1,0 +1,36 @@
+@import "../../assets/fonts/sketchetik/stylesheet.scss";
+@import url("https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap");
+
+// COLORS
+$primary-color: navy;
+$secondary-color: maroon;
+$secondary-color-light: lighten($secondary-color, 10%);
+$secondary-color-lighter: lighten($secondary-color, 5%);
+$light-blue: #93c7ff;
+$link-color: #007bff;
+$blue: #0400ff;
+$blue-black: #1f3650;
+$green: #539651;
+$lime-green: #62b83a;
+$light-green: #deffd7;
+$red: #a12323;
+$yellow: #ece93c;
+$gold: #f0cc00;
+$grey: #d6d6d6;
+$grey-plus: #4b4b4b;
+$light-grey: #eeeded;
+$purple: #612d8b;
+$pink: #d31a80;
+$orange: #dd9528;
+$dark-orange: #995c00;
+
+$font-stack-primary: "sketchetik_boldregular";
+$font-stack-input: "Gaegu", cursive;
+
+//BREAKPOINTS MAP
+$breakpoints: (
+  "sm": 320px,
+  "md": 768px,
+  "lg": 1024px,
+  "xl": 1200px
+);

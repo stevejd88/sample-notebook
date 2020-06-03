@@ -1,0 +1,49 @@
+@import "../../../utilities/scss/utils.scss";
+
+#fluid-stations2-container {
+  h2 {
+    margin-bottom: 2rem;
+  }
+  h4 {
+    color: $gold;
+    font-weight: bold;
+  }
+
+  .form-group {
+    margin: 0 auto;
+    margin-bottom: 1.5rem;
+    width: 95%;
+    @include flex-me($dir: column, $just: center);
+  }
+
+  label {
+    text-align: left;
+  }
+
+  .btns-scu {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  .bern-inputs {
+    text-align: left;
+    margin-bottom: 2rem;
+
+    input {
+      margin: 0.5rem 0;
+      text-align: center;
+      max-width: 40%;
+      @include mq("md") {
+        max-width: 20%;
+      }
+    }
+  }
+
+  .berns-container {
+    margin-bottom: 1rem;
+  }
+
+  .bernoullis-canvas {
+    margin: 0 auto;
+  }
+}

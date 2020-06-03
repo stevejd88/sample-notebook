@@ -1,0 +1,31 @@
+@import "../../utilities/scss/utils.scss";
+
+.createProfile {
+  h1 {
+    color: $primary-color;
+    margin-bottom: 1rem;
+  }
+
+  @include mq("md") {
+    margin-top: 2rem;
+  }
+
+  form {
+    @include mq("md") {
+      margin-top: 2rem;
+      @include flex-me($dir: column, $just: center);
+    }
+
+    input {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    button {
+      font-size: 1.5rem;
+      padding: 0.31rem;
+      width: 50%;
+      margin: 0 auto;
+    }
+  }
+}

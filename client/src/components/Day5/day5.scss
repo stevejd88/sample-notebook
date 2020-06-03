@@ -1,0 +1,21 @@
+@import "../../utilities/scss/utils.scss";
+
+.station {
+  margin-bottom: 2rem;
+  border-bottom: 5px dotted $grey;
+  padding-bottom: 2rem;
+}
+
+.station-body {
+  margin: 0 auto;
+  @include mq("md") {
+    @include flex-me($dir: row, $just: space-between);
+    @include roundy($bord: 3px groove $primary-color, $rad: 5px, $p: 1rem);
+  }
+}
+
+.station-qs {
+  @include mq("md") {
+    width: 60%;
+  }
+}

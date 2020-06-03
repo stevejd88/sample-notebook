@@ -1,0 +1,50 @@
+@import "../../../utilities/scss/utils.scss";
+
+#mechanical-energy-container {
+  .describe-toy-move {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .sound-activity {
+    margin-bottom: 2rem;
+    label {
+      text-align: left;
+    }
+
+    h4 {
+      color: $green;
+    }
+
+    input {
+      margin-top: 0.5rem;
+      @include mq("md") {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  .form-group {
+    @include flex-me($dir: column, $just: center, $wrap: wrap);
+    width: 100%;
+  }
+
+  .btns-scu {
+    margin-bottom: 1rem;
+  }
+
+  .mech-energy-is {
+    text-align: left;
+    span {
+      font-weight: bold;
+    }
+  }
+
+  .draw-mech {
+    color: $green;
+  }
+
+  fieldset {
+    margin-bottom: 1rem;
+  }
+}

@@ -1,0 +1,50 @@
+@import "../../../utilities/scss/utils.scss";
+
+#pop-data-container {
+  .pop-hypothesis {
+    p,
+    label {
+      text-align: left;
+    }
+
+    input {
+      text-align: center;
+    }
+
+    h3 {
+      color: $purple;
+    }
+  }
+
+  .team-data {
+    margin-top: 2rem;
+    @include mq("md") {
+      @include flex-me($dir: row, $just: space-between);
+    }
+
+    .teamA-data,
+    .teamB-data {
+      h4 {
+        margin-bottom: 1rem;
+      }
+    }
+
+    p {
+      align-self: center;
+    }
+  }
+
+  .teamA-data,
+  .teamA-data table {
+    color: $red;
+  }
+
+  .teamB-data,
+  .teamB-data table {
+    color: $blue;
+  }
+
+  table {
+    @include roundy($bord: 2px solid $grey);
+  }
+}

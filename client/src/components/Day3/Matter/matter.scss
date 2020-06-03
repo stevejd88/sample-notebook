@@ -1,0 +1,62 @@
+@import "../../../utilities/scss/utils.scss";
+
+#matter-container {
+  .form-group {
+    margin-bottom: 2rem;
+    @include mq("md") {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    label {
+      text-align: left;
+      @include mq("md") {
+        margin-right: 1rem;
+      }
+    }
+
+    input {
+      margin-bottom: 1rem;
+      @include mq("md") {
+        margin-right: 1rem;
+      }
+    }
+
+    img {
+      max-width: 50%;
+      @include mq("md") {
+        max-width: 40%;
+      }
+      @include mq("lg") {
+        max-width: 30%;
+      }
+    }
+  }
+
+  span {
+    color: $green;
+    font-weight: bold;
+  }
+
+  .kinetic-energy {
+    font-size: 1.25rem;
+  }
+
+  .p-table,
+  .som {
+    display: none;
+
+    @include mq("md") {
+      display: inline-block;
+    }
+  }
+
+  .som {
+    margin-bottom: 1.5rem;
+  }
+
+  button {
+    margin-bottom: 2rem;
+  }
+}

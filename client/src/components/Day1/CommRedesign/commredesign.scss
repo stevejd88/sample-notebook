@@ -1,0 +1,47 @@
+@import "../../../utilities/scss/utils.scss";
+
+#obq-comm-redesign-container {
+  @include flex-me($dir: column, $just: center);
+
+  h3 {
+    margin-top: 1rem;
+  }
+
+  .comm-input-div {
+    @include flex-me($dir: column, $just: center);
+    margin-bottom: 1rem;
+
+    label {
+      font-weight: bold;
+    }
+  }
+
+  legend {
+    text-align: left;
+  }
+
+  .redesign-input-div {
+    margin-bottom: 1rem;
+    @include mq("md") {
+      @include flex-me($dir: column, $just: center);
+    }
+  }
+
+  .two-things {
+    margin-bottom: 1rem;
+    @include mq("md") {
+      @include flex-me($dir: row, $just: center);
+    }
+
+    textarea {
+      @include mq("md") {
+        flex-basis: 40%;
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  .last-redesign {
+    margin-top: 1rem;
+  }
+}

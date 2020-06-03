@@ -1,0 +1,36 @@
+@import "../../../utilities/scss/utils.scss";
+
+.main-nav {
+  border-top: 8px solid $primary-color;
+  border-bottom: 5px solid $secondary-color;
+  @include mq("sm") {
+    @include flex-me($dir: column, $just: center);
+  }
+}
+
+.main-nav-link {
+  color: $link-color;
+
+  &:hover {
+    color: $secondary-color;
+    text-decoration: underline;
+  }
+}
+
+svg {
+  height: 1.8rem;
+  width: 1.8rem;
+  display: inline-block;
+  @include mq("md") {
+    margin-right: 0.7rem;
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+}
+
+.brand-name {
+  display: none;
+  @include mq("md") {
+    display: inline;
+  }
+}

@@ -1,0 +1,142 @@
+@import "../../../utilities/scss/utils.scss";
+
+#solubility-container {
+  p {
+    text-align: left;
+  }
+
+  input {
+    max-width: 40%;
+    margin-bottom: 0.5rem;
+    text-align: center;
+
+    @include mq("md") {
+      max-width: 35%;
+    }
+  }
+
+  ::-webkit-input-placeholder {
+    font-size: 12px;
+    @include mq("md") {
+      font-size: 22px;
+    }
+  }
+  ::-moz-placeholder {
+    font-size: 12px;
+    @include mq("md") {
+      font-size: 22px;
+    }
+  }
+  :-ms-input-placeholder {
+    font-size: 12px;
+    @include mq("md") {
+      font-size: 22px;
+    }
+  }
+  ::placeholder {
+    font-size: 12px;
+    @include mq("md") {
+      font-size: 22px;
+    }
+  }
+
+  .solubility-top {
+    @include roundy($bord: 3px solid $purple, $rad: 5px, $p: 1.5rem);
+    margin-bottom: 2rem;
+  }
+
+  .solu-word-bank {
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    @include roundy($bord: 3px dashed $purple, $rad: 5px, $p: 1rem);
+    @include mq("md") {
+      max-width: 70%;
+    }
+  }
+
+  .solu-words {
+    @include mq("md") {
+      @include flex-me($dir: row, $just: space-between);
+    }
+  }
+
+  .solu-test {
+    @include mq("lg") {
+      max-width: 60%;
+    }
+  }
+
+  .solu-test-item {
+    margin-bottom: 1.5rem;
+  }
+
+  .corn-syrup {
+    color: $gold;
+  }
+
+  .oil {
+    color: $purple;
+  }
+
+  .kool-aid {
+    color: $red;
+  }
+
+  .polar {
+    @include roundy($bord: 3px solid $purple, $rad: 5px, $p: 1.5rem);
+    margin-bottom: 1rem;
+
+    h4 {
+      @include mq("lg") {
+        margin-bottom: 2rem;
+      }
+    }
+
+    img {
+      max-width: 95%;
+      @include mq("md") {
+        max-width: 50%;
+      }
+      @include mq("lg") {
+        max-width: 90%;
+      }
+    }
+
+    p {
+      text-align: center;
+      @include mq("lg") {
+        text-align: left;
+      }
+    }
+  }
+
+  .polar-like {
+    span {
+      color: $pink;
+    }
+  }
+
+  .polar-p {
+    span {
+      color: $green;
+    }
+  }
+
+  .solu-bottom {
+    @include mq("lg") {
+      @include flex-me($dir: row, $just: space-between);
+    }
+  }
+
+  // .solu-match-qs {
+  //   p {
+  //     text-align: left;
+  //   }
+
+  //   input {
+  //     max-width: 40%;
+  //     margin-bottom: 0.5rem;
+  //     text-align: center;
+  //   }
+  // }
+}

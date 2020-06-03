@@ -1,0 +1,56 @@
+@import "../../../utilities/scss/utils.scss";
+
+#thermal-energy-container {
+  .thermal-predict-div {
+    margin-bottom: 2rem;
+    @include flex-me($dir: column, $just: center);
+
+    .form-group {
+      @include flex-me($dir: column, $just: center);
+      margin: 0 auto;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .themal-observe-div {
+    max-width: 100%;
+  }
+
+  .therm-observe-item {
+    @include flex-me($dir: column, $just: center);
+    border-bottom: 1px solid $grey;
+    margin-bottom: 1rem;
+    max-width: 100%;
+    @include mq("md") {
+      @include flex-me($dir: row, $just: center);
+    }
+
+    .form-group {
+      @include flex-me($dir: column, $just: center);
+      @include mq("md") {
+        max-width: 50%;
+      }
+    }
+  }
+
+  .thermal-pre-room span,
+  .thermal-observe-room label {
+    color: $green;
+  }
+
+  .thermal-pre-cold span,
+  .thermal-observe-cold label {
+    color: $light-blue;
+  }
+
+  .thermal-pre-warm span,
+  .thermal-observe-warm label {
+    color: $red;
+  }
+
+  .thermal-room-canvas,
+  .thermal-cold-canvas,
+  .thermal-warm-canvas {
+    margin: 0 auto;
+  }
+}

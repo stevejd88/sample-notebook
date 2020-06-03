@@ -1,0 +1,44 @@
+@import "../../../utilities/scss/utils.scss";
+
+#edp-div {
+  @include mq("md") {
+    font-size: 1.75rem;
+    margin-top: 2rem;
+  }
+
+  img {
+    margin-bottom: 1.25rem;
+    @include mq("md") {
+      max-width: 80%;
+    }
+    @include mq("lg") {
+      max-width: 55%;
+    }
+  }
+
+  li {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+
+  form {
+    @include mq("sm") {
+      @include flex-me($dir: column, $just: center, $wrap: wrap);
+    }
+  }
+
+  ul {
+    margin: 0 auto;
+  }
+
+  span:first-child {
+    margin-right: 0.5rem;
+    color: red;
+  }
+
+  input {
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid black;
+  }
+}

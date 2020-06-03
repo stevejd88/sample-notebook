@@ -1,0 +1,87 @@
+@import "../../utilities/scss/utils.scss";
+
+#contact-container {
+  font-weight: bold;
+  p {
+    @include mq("md") {
+      font-size: 1.5rem;
+    }
+  }
+
+  .contact-imgs {
+    margin-bottom: 1.5rem;
+    @include mq("md") {
+      @include flex-me($dir: row, $just: space-between);
+      align-items: flex-start;
+      margin-bottom: 4rem;
+    }
+
+    .contact-starbase {
+      max-width: 70%;
+      @include mq("md") {
+        max-width: 30%;
+      }
+      @include mq("lg") {
+        max-width: 35%;
+      }
+    }
+
+    .dod {
+      @include mq("md") {
+        max-width: 70%;
+      }
+      @include mq("lg") {
+        max-width: 55%;
+      }
+    }
+  }
+
+  .contact-links {
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    @include mq("md") {
+      margin-bottom: 4rem;
+    }
+  }
+
+  .contact-websites {
+    color: $secondary-color;
+  }
+
+  .social-link {
+    margin-bottom: 0.5rem;
+    @include mq("md") {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .social-link a {
+    margin: 0 auto;
+    width: 80%;
+    @include flex-me($dir: row, $just: flex-start);
+    @include mq("md") {
+      width: 50%;
+      margin-bottom: 1rem;
+    }
+    @include mq("lg") {
+      width: 35%;
+    }
+    @include mq("xl") {
+      width: 35%;
+    }
+    i {
+      margin-right: 1rem;
+      min-width: 2rem;
+    }
+
+    p {
+      align-self: center;
+    }
+  }
+
+  .contact-address {
+    font-family: $font-stack-primary;
+    -webkit-font-smoothing: antialiased;
+    color: $secondary-color;
+  }
+}

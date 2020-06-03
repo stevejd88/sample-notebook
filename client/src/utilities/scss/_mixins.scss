@@ -1,0 +1,28 @@
+//FLEX CONTAINER
+@mixin flex-me($disp: flex, $dir: null, $wrap: null, $just: null) {
+  display: $disp;
+  flex-direction: $dir;
+  flex-wrap: $wrap;
+  justify-content: $just;
+}
+
+// BOORDERS
+@mixin roundy($bord: null, $rad: null, $m: null, $p: null) {
+  border: $bord;
+  border-radius: $rad;
+  margin-bottom: $m;
+  padding: $p;
+}
+
+// MEDIA QUERIES
+@mixin mq($break) {
+  $value: map-get($breakpoints, $break);
+
+  @if $value == null {
+    @error '`#{$break}` is not a valid breakpoint name.';
+  } @else {
+    @media (min-width: $value) {
+      @content;
+    }
+  }
+}

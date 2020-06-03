@@ -1,0 +1,47 @@
+@import "../../../utilities/scss/utils.scss";
+
+#pop-graph-container {
+  table {
+    margin: 0 auto;
+    @include roundy($bord: 2px solid $grey);
+    @include mq("lg") {
+      max-width: 80%;
+    }
+  }
+
+  th {
+    border-bottom: 2px solid #000;
+  }
+
+  td {
+    font-weight: bold;
+  }
+
+  .blank {
+    background-color: $light-green;
+  }
+
+  .table-scroll {
+    margin-bottom: 2rem;
+  }
+
+  .pop-canvas-div {
+    margin-bottom: 2rem;
+  }
+
+  .btns-scu {
+    margin-bottom: 1rem;
+  }
+
+  .pop-canvas {
+    margin: 0 auto;
+    max-width: 90%;
+    @include mq("md") {
+      max-width: 100%;
+    }
+  }
+
+  .pop-graph-bottom {
+    max-width: 100%;
+  }
+}

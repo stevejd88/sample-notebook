@@ -1,0 +1,26 @@
+@import "../../../utilities/scss/utils.scss";
+
+#obq-intro {
+  img {
+    margin-bottom: 1.25rem;
+  }
+
+  p {
+    text-align: left;
+    margin-bottom: 1.25rem;
+  }
+
+  h3 {
+    margin-bottom: 1rem;
+  }
+
+  form {
+    @include mq("sm") {
+      @include flex-me($dir: column, $just: center);
+    }
+  }
+
+  textarea {
+    margin-bottom: 1.5rem;
+  }
+}

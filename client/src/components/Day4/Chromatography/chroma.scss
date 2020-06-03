@@ -1,0 +1,64 @@
+@import "../../../utilities/scss/utils.scss";
+
+#chromatography-container {
+  p {
+    text-align: left;
+  }
+
+  .table {
+    border: 3px groove $primary-color;
+  }
+
+  .chroma-qs-top,
+  .chroma-qs-bottom {
+    input {
+      text-align: center;
+      max-width: 50%;
+      @include mq("md") {
+        max-width: 20%;
+      }
+    }
+  }
+
+  .radio-div {
+    width: 100%;
+    @include flex-me($dir: row, $just: space-between);
+  }
+
+  .chroma-eight-radio,
+  .chroma-seven-radio {
+    @include flex-me($dir: column, $just: center);
+  }
+
+  .color-purple {
+    background-color: $purple;
+    border-radius: 5px;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }
+
+  .color-red {
+    background-color: $red;
+    border-radius: 5px;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }
+
+  .color-orange {
+    background-color: $orange;
+    border-radius: 5px;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }
+
+  .color-blue-black {
+    background-color: $blue-black;
+    border-radius: 5px;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,27 @@
+@import "../../../utilities/scss/utils.scss";
+
+#eggbert-evaluate-container {
+  img {
+    margin-bottom: 1rem;
+    @include mq("md") {
+      max-width: 80%;
+    }
+  }
+
+  p {
+    margin-bottom: 0rem;
+  }
+
+  label {
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+
+  label p:first-child {
+    color: $lime-green;
+  }
+
+  textarea {
+    width: 100%;
+  }
+}

@@ -1,0 +1,35 @@
+@import "../../../utilities/scss/utils.scss";
+
+#eggbert-gallery2-container {
+  h2 {
+    color: $lime-green;
+
+    span {
+      color: $red;
+    }
+  }
+
+  ul {
+    background-color: $lime-green;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0.3rem;
+  }
+
+  table {
+    margin: 0 auto;
+    @include mq("lg") {
+      max-width: 80%;
+    }
+  }
+
+  .table-scroll {
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+  }
+
+  td {
+    font-weight: bold;
+  }
+}

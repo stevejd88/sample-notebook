@@ -1,0 +1,37 @@
+@import "../../../utilities/scss/utils.scss";
+
+#eggbert-container {
+  span {
+    color: $lime-green;
+  }
+
+  .egg-define {
+    margin-bottom: 1rem;
+
+    span {
+      color: $lime-green;
+    }
+
+    label {
+      text-align: left;
+    }
+  }
+
+  textarea {
+    width: 100%;
+  }
+
+  .eggbert-canvas-div {
+    p:first-child {
+      color: $lime-green;
+    }
+  }
+
+  .btns-scu {
+    margin-bottom: 0.5rem;
+  }
+
+  .eggbert-canvas {
+    margin-bottom: 1rem;
+  }
+}

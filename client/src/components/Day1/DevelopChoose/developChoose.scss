@@ -1,0 +1,92 @@
+@import "../../../utilities/scss/utils.scss";
+
+#obq-solutions-container {
+  h3 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.crossed {
+  color: red;
+  text-decoration: line-through;
+}
+
+.checked {
+  border: solid 1px;
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.circle-solutions {
+  margin: 0 auto;
+  @include mq("md") {
+    @include flex-me($dir: row, $just: center);
+  }
+}
+
+.sol-criteria {
+  flex-basis: 55%;
+  text-align: left;
+  @include flex-me($dir: column, $just: space-between);
+  h5 {
+    margin-bottom: 0.75rem;
+  }
+}
+
+.sol-types {
+  flex-basis: 35%;
+  background-color: $light-blue;
+  border-radius: 0.62rem;
+  padding: 0.62rem;
+  @include mq("sm") {
+    @include flex-me($dir: column, $just: center);
+  }
+
+  ul {
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  h4 {
+    margin-bottom: 0.94rem;
+    border-bottom: 1px solid black;
+    padding-bottom: 0.31rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  button {
+    background-color: $red;
+    border: 1px solid black;
+    border-radius: 0.2rem;
+    margin-right: 0.4rem;
+    padding: 0.1rem 0.2rem;
+  }
+  button:first-child {
+    background-color: $green;
+  }
+
+  span {
+    margin-left: 0.25rem;
+  }
+}
+
+#obq-choose-solutions-container {
+  h3 {
+    margin-top: 2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  form {
+    @include mq("sm") {
+      @include flex-me($dir: column, $just: center);
+    }
+
+    textarea,
+    input {
+      margin-bottom: 1.5rem;
+    }
+  }
+}

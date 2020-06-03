@@ -1,0 +1,31 @@
+@import "../../../utilities/scss/utils.scss";
+
+.greetings-div {
+  h2 {
+    font-family: $font-stack-input;
+    @include mq("md") {
+      font-size: 2.5rem;
+      padding-top: 5rem;
+    }
+  }
+
+  p {
+    margin-bottom: 0;
+    text-transform: uppercase;
+    @include mq("md") {
+      font-size: 1.25rem;
+    }
+  }
+
+  .img-dod {
+    @include mq("md") {
+      max-width: 90%;
+    }
+    @include mq("lg") {
+      max-width: 80%;
+    }
+    @include mq("xl") {
+      max-width: 60%;
+    }
+  }
+}

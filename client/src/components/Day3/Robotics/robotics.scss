@@ -1,0 +1,114 @@
+@import "../../../utilities/scss/utils.scss";
+
+#robotics-container {
+  .top-robot-div {
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    @include mq("md") {
+      @include flex-me($dir: row, $just: center);
+    }
+
+    textarea {
+      @include mq("md") {
+        flex-basis: 55%;
+      }
+
+      @include mq("lg") {
+        flex-basis: 75%;
+      }
+    }
+  }
+
+  .btns-scu {
+    margin-top: 0;
+  }
+
+  .more-robots-top {
+    @include mq("md") {
+      @include flex-me($dir: row, $just: center);
+      margin-bottom: 2rem;
+      align-items: flex-start;
+    }
+
+    img {
+      max-width: 50%;
+      margin-bottom: 1rem;
+      @include mq("md") {
+        max-width: 30%;
+      }
+    }
+  }
+}
+
+.robo-wordbank {
+  @include roundy($bord: 2px solid $pink, $rad: 5px, $p: 1rem);
+  margin-bottom: 1rem;
+  ul {
+    @include flex-me($dir: row, $just: space-evenly, $wrap: wrap);
+  }
+
+  li {
+    margin-bottom: 0.25rem;
+    margin-right: 1rem;
+  }
+
+  h3 {
+    color: $pink;
+    font-size: 1.25rem;
+    font-weight: bold;
+    @include mq("xl") {
+      font-size: 1.75rem;
+    }
+  }
+}
+
+.more-robots-bottom {
+  margin-bottom: 1rem;
+  @include mq("md") {
+    @include flex-me($dir: row, $just: space-evenly);
+  }
+
+  img {
+    display: none;
+    @include mq("md") {
+      display: block;
+      max-height: 300px;
+    }
+    @include mq("xl") {
+      max-height: 500px;
+    }
+  }
+}
+
+.more-robots-qs {
+  text-align: left;
+  @include mq("md") {
+    max-width: 60%;
+  }
+  input {
+    margin: 0 0.5rem;
+  }
+
+  .form-row {
+    margin-bottom: 1rem;
+  }
+
+  input {
+    max-width: 150px;
+    text-align: center;
+    padding-bottom: 0;
+  }
+
+  .robots-in-common {
+    @include flex-me($dir: column, $just: center);
+
+    label {
+      margin-right: 0.5rem;
+    }
+    .form-group {
+      margin: 0 auto;
+      margin-bottom: 1rem;
+      @include flex-me($dir: row, $just: center);
+    }
+  }
+}

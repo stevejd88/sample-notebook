@@ -1,0 +1,16 @@
+@import "../../../utilities/scss/utils.scss";
+
+footer {
+  border-top: 5px solid $secondary-color;
+  border-bottom: 8px solid$primary-color;
+  background-color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+footer p {
+  margin: 0 auto;
+  padding: 0.5rem;
+  height: 2.5rem;
+}

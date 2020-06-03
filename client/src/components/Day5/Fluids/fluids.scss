@@ -1,0 +1,107 @@
+@import "../../../utilities/scss/utils.scss";
+
+#fluids-container {
+  .fluid-engage-fieldset {
+    border-bottom: 5px dotted $grey;
+    margin-bottom: 1.5rem;
+  }
+
+  h2,
+  .fluid-is span {
+    color: $blue;
+  }
+
+  .fluid-is {
+    text-align: left;
+    @include mq("md") {
+      padding-left: 2rem;
+      align-self: center;
+    }
+  }
+
+  .fluids-checklist {
+    @include mq("md") {
+      @include flex-me($dir: row, $just: space-between);
+      border: 2px solid black;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .table-scroll {
+      border: 2px solid black;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      @include mq("md") {
+        width: 70%;
+        border: none;
+        margin: 0 auto;
+        border-left: 2px solid black;
+      }
+    }
+
+    .table {
+      @include mq("md") {
+        margin: 0;
+      }
+    }
+  }
+
+  .fluid-imgs {
+    @include mq("md") {
+      @include flex-me($dir: row, $just: space-between);
+      margin-bottom: 1rem;
+      align-items: flex-start;
+    }
+
+    .img-wall,
+    .img-smoke {
+      @include mq("md") {
+        width: 37%;
+        min-height: 165px;
+      }
+    }
+
+    .img-beakers {
+      @include mq("md") {
+        width: 25%;
+      }
+    }
+  }
+
+  .lift-station-body {
+    @include mq("md") {
+      @include roundy($bord: 3px groove $primary-color, $rad: 5px, $p: 1rem);
+      margin-bottom: 1rem;
+    }
+  }
+
+  .form-group {
+    text-align: left;
+  }
+
+  .fluid-identify {
+    @include mq("md") {
+      margin-bottom: 3rem;
+    }
+  }
+
+  .station-lift {
+    h4 {
+      color: $gold;
+      font-weight: bold;
+    }
+
+    textarea {
+      width: 100%;
+    }
+
+    .table-scroll {
+      margin-bottom: 1rem;
+      @include mq("md") {
+        border: 2px dotted black;
+        border-radius: 10px;
+        margin: 2rem auto;
+      }
+    }
+  }
+}

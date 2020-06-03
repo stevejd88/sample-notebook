@@ -1,0 +1,52 @@
+@import "../../../utilities/scss/utils.scss";
+
+#register-container {
+  img {
+    max-width: 50%;
+    @include mq("md") {
+      margin-bottom: 2.5rem;
+    }
+    @include mq("lg") {
+      max-width: 30%;
+    }
+  }
+
+  h1 {
+    @extend %heading;
+    @include mq("md") {
+      margin-bottom: 1rem;
+    }
+  }
+
+  form {
+    @include flex-me($dir: column, $just: center);
+    padding-bottom: 0.5rem;
+
+    input {
+      @include roundy(
+        $bord: 1px solid $primary-color,
+        $rad: 3px,
+        $m: 0.65rem,
+        $p: 0.45rem
+      );
+      @include mq("md") {
+        width: 80%;
+        align-self: center;
+      }
+      @include mq("lg") {
+        width: 60%;
+        align-self: center;
+      }
+    }
+
+    .registerButton {
+      @extend %btn;
+      max-width: 50%;
+      align-self: center;
+      @include mq("md") {
+        margin-top: 1rem;
+        max-width: 25%;
+      }
+    }
+  }
+}

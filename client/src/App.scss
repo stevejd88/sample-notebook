@@ -1,0 +1,240 @@
+@import "./utilities/scss/utils.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 40px;
+  @include mq("xl") {
+    font-size: 1.25rem;
+  }
+}
+
+h1 {
+  @extend %heading;
+}
+
+h2,
+h3 {
+  @extend %heading2;
+}
+
+input,
+textarea,
+.bs-input {
+  font-family: $font-stack-input;
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+  border: 2px solid $grey;
+  padding: 5px;
+  border-radius: 0.3rem;
+  @include mq("md") {
+    font-size: 2rem;
+  }
+}
+
+textarea,
+.form-group textarea {
+  max-width: 100%;
+  resize: vertical;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+.main-container {
+  padding-top: 5.5rem;
+  padding-bottom: 2rem;
+
+  @include mq("md") {
+    padding-top: 5.25rem;
+  }
+}
+
+.btns-scu {
+  margin-top: 1rem;
+
+  .btn-save,
+  .btn-clear,
+  .btn-undo {
+    @include roundy($bord: 1px solid black, $rad: 0.25rem, $p: 3px);
+    margin-right: 0.94rem;
+    margin-left: 0.94rem;
+  }
+
+  .btn-save {
+    background-color: $green;
+  }
+
+  .btn-clear {
+    background-color: $red;
+  }
+
+  .btn-undo {
+    background-color: $yellow;
+  }
+}
+
+.img-fluid {
+  image-rendering: -webkit-optimize-contrast;
+  @include mq("lg") {
+    max-width: 70%;
+  }
+}
+
+form {
+  table input {
+    text-align: center;
+    font-size: 1.1rem;
+    @include mq("md") {
+      width: 155px;
+    }
+    @include mq("lg") {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.table-scroll {
+  overflow: scroll;
+}
+
+.day-dash-buttons {
+  @include mq("sm") {
+    @include flex-me($dir: row, $just: center, $wrap: wrap);
+  }
+  a {
+    border: 0.06rem solid $primary-color;
+    color: $primary-color;
+    margin-bottom: 0.37rem;
+    margin-right: 0.37rem;
+  }
+}
+
+.sbm-btm {
+  margin-top: 1rem;
+}
+
+.custom-checkbox,
+legend {
+  margin-bottom: 1rem;
+}
+
+.launch-conclusion {
+  @include flex-me($just: center, $wrap: wrap);
+}
+
+.graph-canvas {
+  max-width: 300px;
+  margin: 0 auto;
+  @include mq("md") {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+}
+
+.free-canvas {
+  max-width: 300px;
+  margin: 0 auto;
+  border: 2px solid $grey;
+  border-radius: 0.3rem;
+  @include mq("md") {
+    max-width: 90%;
+  }
+}
+
+.days-nav {
+  background-color: $secondary-color-lighter;
+  margin-bottom: 2rem;
+  @include roundy($bord: 1px solid $primary-color, $rad: 5px);
+  transform-box: content-box;
+
+  .navbar {
+    background-color: white;
+  }
+
+  .dropdown-toggle {
+    background-color: white;
+    @include roundy($bord: 1px solid $primary-color, $rad: 5px);
+  }
+
+  .show {
+    position: inherit;
+    background-color: white;
+    @include flex-me($dir: column, $just: center);
+  }
+
+  .dropdown-menu {
+    background-color: $secondary-color-lighter;
+    padding: 1rem;
+    height: auto;
+    transform: translateY(calc(0% - 0.5px));
+    a {
+      border: 0.06rem solid $primary-color;
+      color: $primary-color;
+      margin-bottom: 0.37rem;
+      margin-right: 0.37rem;
+    }
+  }
+
+  .day-nav-call {
+    display: none;
+    @include mq("md") {
+      display: inline;
+      color: white;
+      font-family: $font-stack-input;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.day-h1 {
+  text-align: left;
+  font-size: 2rem;
+}
+
+.rating-scale ul {
+  @include flex-me($dir: row, $just: space-evenly);
+}
+
+.circled-it {
+  border: 1px solid black;
+  border-radius: 80px;
+  padding: 0.25rem;
+}
+
+.banneker {
+  color: $pink;
+}
+.easley {
+  color: $orange;
+}
+.douglas {
+  color: $blue;
+}
+.krafft {
+  color: $red;
+}
+.merian {
+  color: $gold;
+}
+.mirzakhani {
+  color: $green;
+}
+.molina {
+  color: $purple;
+}
+.wu {
+  color: $light-blue;
+}

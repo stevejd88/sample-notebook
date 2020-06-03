@@ -1,0 +1,38 @@
+@import "../../../utilities/scss/utils.scss";
+
+#landing-container {
+  img {
+    @include mq("sm") {
+      max-width: 85%;
+    }
+    @include mq("lg") {
+      max-width: 60%;
+    }
+  }
+
+  h1 {
+    @extend %heading;
+    margin-top: 1rem;
+    @include mq("md") {
+      font-size: 5.5rem;
+    }
+    @include mq("lg") {
+      font-size: 4.5rem;
+      padding-bottom: 0.5rem;
+    }
+  }
+}
+
+.landing-buttons {
+  margin-top: 1rem;
+  button {
+    font-family: $font-stack-input;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    width: 8rem;
+    @include mq("md") {
+      font-size: 2rem;
+      width: 10rem;
+    }
+  }
+}

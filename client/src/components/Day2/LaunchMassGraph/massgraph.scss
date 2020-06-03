@@ -1,0 +1,17 @@
+@import "../../../utilities/scss/utils.scss";
+
+#launch-mass-graph-container {
+  @include flex-me($dir: column, $just: center, $wrap: wrap);
+
+  span {
+    color: $blue;
+  }
+
+  h3 {
+    margin-top: 1rem;
+  }
+
+  input {
+    text-align: center;
+  }
+}

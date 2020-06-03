@@ -1,0 +1,57 @@
+@import "../../../utilities/scss/utils.scss";
+
+#figure-that-container {
+  p {
+    text-align: left;
+  }
+
+  form {
+    table {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid $grey;
+    }
+    table input {
+      padding-top: 0.25rem;
+      @include mq("lg") {
+        padding-top: 0.4rem;
+      }
+    }
+    @include mq("md") {
+      @include flex-me($dir: column, $just: center);
+    }
+
+    label {
+      text-align: left;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.ft-imgs {
+  margin-bottom: 1rem;
+  @include flex-me($dir: column, $just: center);
+  @include mq("md") {
+    @include flex-me($dir: row, $just: center);
+  }
+  .pie-img {
+    @include mq("md") {
+      flex-basis: 20%;
+    }
+  }
+
+  .fracs-img {
+    @include mq("md") {
+      flex-basis: 40%;
+    }
+  }
+}
+
+.figure-qs {
+  @include flex-me($dir: column, $just: center);
+
+  input,
+  textarea {
+    margin-bottom: 1rem;
+  }
+}

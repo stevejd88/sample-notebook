@@ -1,0 +1,70 @@
+@import "../../../utilities/scss/utils.scss";
+
+#kinetic-energy-container {
+  .kin-intro {
+    text-align: left;
+  }
+
+  .states-container {
+    .form-row {
+      @include flex-me($dir: column, $just: center);
+    }
+
+    input {
+      text-align: center;
+    }
+  }
+
+  .kin-solid {
+    h4 {
+      color: white;
+      background-color: $purple;
+      margin: 0 auto;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .btns-scu {
+    margin-bottom: 1rem;
+    @include mq("md") {
+      margin-top: 0;
+    }
+  }
+
+  .state-item {
+    margin-bottom: 2rem;
+    @include roundy($bord: 2px solid black, $rad: 5px, $p: 1rem);
+    @include mq("md") {
+      @include flex-me($dir: row, $just: space-between);
+      margin-bottom: 3rem;
+    }
+  }
+
+  .state-item-top {
+    @include flex-me($dir: column, $just: flex-start);
+  }
+
+  .kin-liquid {
+    h4 {
+      color: white;
+      background-color: $blue;
+      margin: 0 auto;
+      margin-bottom: 1rem;
+      padding: 0 1rem;
+    }
+  }
+
+  .kin-gas {
+    h4 {
+      color: white;
+      background-color: $green;
+      margin: 0 auto;
+      margin-bottom: 1rem;
+      padding: 0 3rem;
+    }
+  }
+
+  .kinetic-bottom {
+    margin-bottom: 1rem;
+  }
+}

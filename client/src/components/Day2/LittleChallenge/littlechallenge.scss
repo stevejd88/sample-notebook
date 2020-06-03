@@ -1,0 +1,45 @@
+@import "../../../utilities/scss/utils.scss";
+
+#littleChallenge-container {
+  @include flex-me($dir: column, $just: center, $wrap: wrap);
+
+  .little-bits-identify {
+    margin-bottom: 2rem;
+    max-width: 100%;
+    legend {
+      color: $purple;
+    }
+  }
+
+  .little-chal-items {
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  .little-chal-item {
+    max-width: 100%;
+    @include flex-me($dir: column, $just: center);
+  }
+
+  .little-bits-challenge {
+    @include roundy($bord: 1px solid $grey, $rad: 0.3rem, $m: 1rem);
+    padding: 1rem;
+
+    label {
+      color: $purple;
+    }
+  }
+
+  .form-group {
+    @include flex-me($dir: column, $just: center, $wrap: wrap);
+    width: 100%;
+  }
+
+  span {
+    color: $pink;
+  }
+
+  button {
+    margin-bottom: 2rem;
+  }
+}

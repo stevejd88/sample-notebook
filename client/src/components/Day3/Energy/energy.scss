@@ -1,0 +1,54 @@
+@import "../../../utilities/scss/utils.scss";
+
+// @include mq("md") {
+//   @include flex-me($dir: row, $just: center);
+
+// }
+
+#energy-container {
+  input {
+    text-align: center;
+    max-width: 120px;
+    margin: 0 0.5rem;
+    @include mq("md") {
+      max-width: 175px;
+    }
+  }
+
+  .what-is-energy {
+    margin-bottom: 2rem;
+
+    .form-group {
+      margin: 0 auto;
+    }
+  }
+
+  .energy-name {
+    color: orange;
+  }
+}
+
+.types-of-energy {
+  @include flex-me($dir: column, $just: center);
+  @include mq("xl") {
+    @include flex-me($dir: row, $just: center, $wrap: wrap);
+  }
+  align-items: center;
+
+  img {
+    max-width: 40%;
+  }
+
+  .form-row {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin: 0 auto;
+    @include flex-me($dir: column, $just: center);
+    align-items: center;
+    @include mq("md") {
+      @include flex-me($dir: row, $just: center);
+    }
+  }
+}
