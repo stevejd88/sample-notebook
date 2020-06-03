@@ -8,5 +8,5 @@ A video of the flow of the webiste can be viewed at:
 https://www.youtube.com/watch?v=WYo1gMCtoh4
 
 To login to practice profile use: 
-login: practice2020
+username: practice2020
 password: 123456
