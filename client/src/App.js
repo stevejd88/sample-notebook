@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import NavigationBar from "./components/layout/NavigationBar";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
+import Csv from "./components/auth/Csv";
 import Login from "./components/auth/Login";
 import Contact from "./components/Contact";
 import Footer from "./components/layout/Footer";
@@ -46,6 +47,7 @@ const App = () => {
             <Switch>
               <Route exact path='/' component={Landing} />
               <Route path='/register' component={Register} />
+              <Route path='/register-multiple' component={Csv} />
               <Route path='/login' component={Login} />
               <Route path='/contact' component={Contact} />
               <PrivateRoute path='/dashboard' component={Dashboard} />

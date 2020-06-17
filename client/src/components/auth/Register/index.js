@@ -89,6 +89,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         <p className='my-1'>
           Already have an account? <Link to='/login'>Sign In</Link>
         </p>
+        <Link to='/register-multiple'>multiple users</Link>
       </section>
     </Fragment>
   );
