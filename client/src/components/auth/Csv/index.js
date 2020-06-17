@@ -28,14 +28,10 @@ const Csv = ({ setAlert, register, isAuthenticated }) => {
     parser.on("error", function (err) {
       console.error(err.message);
     });
-    parser.on("end", function () {
-      // console.log(output);
-    });
 
     const reader = new FileReader();
     reader.onload = (function () {
       return function (e) {
-        console.log("Writing");
         parser.write(e.target.result);
         parser.end();
       };
@@ -51,11 +47,6 @@ const Csv = ({ setAlert, register, isAuthenticated }) => {
       register({ username, password });
     }
   };
-
-  // REDIRECT IF SIGNED UP
-  if (isAuthenticated) {
-    return <Redirect to='/dashboard' />;
-  }
 
   return (
     <Fragment>
@@ -98,11 +89,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { setAlert, register })(Csv);
-
-// const reader = new FileReader();
-
-// reader.onload = function () {
-//   parser.write(reader.result);
-//   // console.log(reader.result);
-// };
-// reader.readAsText(f);
