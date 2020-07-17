@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addObqCeilingFly, getCurrentProfile } from "../../../actions/profile";
+import { addData, getCurrentProfile } from "../../../actions/profile";
 import CanvasDraw from "react-canvas-draw";
 import Spinner from "../../layout/Spinner";
 import Fly from "../../../assets/img/obq/fly3.png";
@@ -15,8 +15,9 @@ const initialState = {
 
 const FlyOnCeiling = ({
   profile: { profile, loading },
-  addObqCeilingFly,
-  getCurrentProfile
+  addData,
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -26,12 +27,21 @@ const FlyOnCeiling = ({
     if (!profile) getCurrentProfile();
   }, [profile, getCurrentProfile]);
 
+  const arrowClick = (e) => {
+    e.preventDefault();
+    if (!profile.day1CeilingFly) {
+      addData("day1/obq/ceiling-fly", true, formData);
+    }
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
 
     if (!profile.day1CeilingFly) {
-      console.log(formData);
-      addObqCeilingFly(formData);
+      addData("day1/obq/ceiling-fly", true, formData);
     }
   };
 
@@ -92,10 +102,34 @@ const FlyOnCeiling = ({
               imgSrc={Fly}
               saveData={profile.day1CeilingFly}
             />
-            <button type='submit' className='btn btn-primary sbm-btm'>
-              Submit
-            </button>
+
             <img className='img-fluid' src={FlyRules} alt='rules' />
+            <div className='submit-btns'>
+              <button
+                type='submit'
+                className='submit-left'
+                onClick={arrowClick}
+                name='left-button'
+                value='/day1/comm-redesign'
+              ></button>
+
+              <button
+                type='submit'
+                className='btn btn-primary my-1 main-save'
+                name='save-button'
+                value='save'
+              >
+                {" "}
+                Save
+              </button>
+
+              <button
+                type='submit'
+                className=' submit-right'
+                onClick={arrowClick}
+                name='right-button'
+              ></button>
+            </div>
           </form>
         </Fragment>
       )}
@@ -104,7 +138,7 @@ const FlyOnCeiling = ({
 };
 
 FlyOnCeiling.propTypes = {
-  addObqCeilingFly: PropTypes.func.isRequired,
+  addData: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -114,6 +148,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  addObqCeilingFly,
+  addData,
   getCurrentProfile
 })(withRouter(FlyOnCeiling));

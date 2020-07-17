@@ -17,7 +17,8 @@ const initialState = {
 const Evaluate = ({
   profile: { profile, loading },
   addData,
-  getCurrentProfile
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -34,6 +35,14 @@ const Evaluate = ({
   }, [loading, getCurrentProfile, profile]);
 
   const { evaluate } = formData;
+
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day5/eggbert/evaluate", true, formData);
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -84,9 +93,33 @@ const Evaluate = ({
                   </Form.Group>
                 </Form.Row>
               </fieldset>
-              <button className='btn btn-primary' type='submit'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day5/eggbert/trial2'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day5/eggbert/redesign'
+                ></button>
+              </div>
             </Form>
           </div>
         </Fragment>

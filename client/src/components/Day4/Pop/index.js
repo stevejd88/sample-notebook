@@ -18,7 +18,12 @@ const initialState = {
   popMath2: ""
 };
 
-const Pop = ({ profile: { profile, loading }, addData, getCurrentProfile }) => {
+const Pop = ({
+  profile: { profile, loading },
+  addData,
+  getCurrentProfile,
+  history
+}) => {
   const [formData, setFormData] = useState(initialState);
 
   useEffect(() => {
@@ -34,6 +39,14 @@ const Pop = ({ profile: { profile, loading }, addData, getCurrentProfile }) => {
   }, [loading, getCurrentProfile, profile]);
 
   const { popJob, popChemist, popEngineer, popMath1, popMath2 } = formData;
+
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day4/pop", true, formData);
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -191,9 +204,32 @@ const Pop = ({ profile: { profile, loading }, addData, getCurrentProfile }) => {
                   </div>
                 </div>
               </fieldset>
-              <button className='btn btn-primary' type='submit'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day4/pop-data'
+                ></button>
+              </div>
             </Form>
           </div>
         </Fragment>

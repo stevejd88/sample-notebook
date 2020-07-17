@@ -4,11 +4,7 @@ import Col from "react-bootstrap/Col";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  addLaunchDisGraph,
-  addLaunchDisGraphRocket,
-  getCurrentProfile
-} from "../../../actions/profile";
+import { addData, getCurrentProfile } from "../../../actions/profile";
 import CanvasDraw from "react-canvas-draw";
 
 import Spinner from "../../layout/Spinner";
@@ -26,9 +22,9 @@ const initialState = {
 
 const LaunchDisplacementGraph = ({
   profile: { profile, loading },
-  addLaunchDisGraph,
-  addLaunchDisGraphRocket,
-  getCurrentProfile
+  addData,
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -55,14 +51,25 @@ const LaunchDisplacementGraph = ({
 
   let { day2DisRocket } = formData;
 
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day2/launch/displacement/graph", true, formData);
+    if (!profile.day2DisRocket) {
+      addData("day2/launch/displacement/graph/rocket", false, formData);
+    }
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addLaunchDisGraph(formData);
+    addData("day2/launch/displacement/graph", true, formData);
     if (!profile.day2DisRocket) {
-      addLaunchDisGraphRocket(formData);
+      addData("day2/launch/displacement/graph/rocket", false, formData);
     }
   };
 
@@ -224,9 +231,33 @@ const LaunchDisplacementGraph = ({
                   </Col>
                 </Form.Row>
               </fieldset>
-              <button className='btn btn-primary' type='submit'>
-                Submit
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day2/launch-displacement'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day2/newton-motion'
+                ></button>
+              </div>
             </Form>
           </section>
         </Fragment>
@@ -236,8 +267,7 @@ const LaunchDisplacementGraph = ({
 };
 
 LaunchDisplacementGraph.propTypes = {
-  addLaunchDisGraph: PropTypes.func.isRequired,
-  addLaunchDisGraphRocket: PropTypes.func.isRequired,
+  addData: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -247,7 +277,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  addLaunchDisGraph,
-  addLaunchDisGraphRocket,
+  addData,
   getCurrentProfile
 })(withRouter(LaunchDisplacementGraph));

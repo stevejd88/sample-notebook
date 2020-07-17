@@ -16,7 +16,8 @@ const initialState = {
 const EggRedesign = ({
   profile: { profile, loading },
   addData,
-  getCurrentProfile
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -25,6 +26,16 @@ const EggRedesign = ({
   }, [profile, getCurrentProfile]);
 
   let { day5RedesignDraw } = formData;
+
+  const arrowClick = (e) => {
+    e.preventDefault();
+    if (!profile.day5RedesignDraw) {
+      addData("day5/eggbert/redesign", false, formData);
+    }
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -99,9 +110,31 @@ const EggRedesign = ({
                   />
                 </div>
               </fieldset>
-              <button className='btn btn-primary' type='submit'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day5/eggbert/evaluate'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                ></button>
+              </div>
             </Form>
           </div>
         </Fragment>

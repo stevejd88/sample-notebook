@@ -23,7 +23,8 @@ const initialState = {
 const PopData = ({
   profile: { profile, loading },
   addData,
-  getCurrentProfile
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -50,6 +51,14 @@ const PopData = ({
     teamB3,
     teamBMean
   } = formData;
+
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day4/pop-data", true, formData);
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -239,9 +248,33 @@ const PopData = ({
                   </div>
                 </div>
               </fieldset>
-              <button className='btn btn-primary' type='submit'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day4'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day4/pop-results'
+                ></button>
+              </div>
             </Form>
           </div>
         </Fragment>

@@ -4,11 +4,7 @@ import Col from "react-bootstrap/Col";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  addNewtonsLaws,
-  addNewtonsAR,
-  getCurrentProfile
-} from "../../../actions/profile";
+import { addData, getCurrentProfile } from "../../../actions/profile";
 import CanvasDraw from "react-canvas-draw";
 
 import Spinner from "../../layout/Spinner";
@@ -25,9 +21,9 @@ const initialState = {
 
 const Newtons = ({
   profile: { profile, loading },
-  addNewtonsLaws,
-  addNewtonsAR,
-  getCurrentProfile
+  addData,
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -49,20 +45,37 @@ const Newtons = ({
   let { day2NewtonsLaw2 } = formData;
   let { day2NewtonsLaw3 } = formData;
 
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day2/newtonsAR", true, formData);
+    if (!profile.day2NewtonsLaw1) {
+      addData("day2/newtons1", false, formData);
+    }
+    if (!profile.day2NewtonsLaw2) {
+      addData("day2/newtons2", false, formData);
+    }
+    if (!profile.day2NewtonsLaw3) {
+      addData("day2/newtons3", false, formData);
+    }
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addNewtonsAR(formData);
+    addData("day2/newtonsAR", true, formData);
     if (!profile.day2NewtonsLaw1) {
-      addNewtonsLaws(1, formData);
+      addData("day2/newtons1", false, formData);
     }
     if (!profile.day2NewtonsLaw2) {
-      addNewtonsLaws(2, formData);
+      addData("day2/newtons2", false, formData);
     }
     if (!profile.day2NewtonsLaw3) {
-      addNewtonsLaws(3, formData);
+      addData("day2/newtons3", false, formData);
     }
   };
 
@@ -325,9 +338,33 @@ const Newtons = ({
                   </div>
                 </div>
               </fieldset>
-              <button className='btn btn-primary' type='submit'>
-                Submit
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day2/displacement-graph'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day2/little-bits'
+                ></button>
+              </div>
             </Form>
           </section>
         </Fragment>
@@ -337,8 +374,7 @@ const Newtons = ({
 };
 
 Newtons.propTypes = {
-  addNewtonsLaws: PropTypes.func.isRequired,
-  addNewtonsAR: PropTypes.func.isRequired,
+  addData: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -348,7 +384,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  addNewtonsLaws,
-  addNewtonsAR,
+  addData,
   getCurrentProfile
 })(withRouter(Newtons));

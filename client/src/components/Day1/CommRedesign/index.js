@@ -2,10 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  addObqCommRedesign,
-  getCurrentProfile
-} from "../../../actions/profile";
+import { addData, getCurrentProfile } from "../../../actions/profile";
 import Spinner from "../../layout/Spinner";
 
 import "./commredesign.scss";
@@ -21,8 +18,9 @@ const initialState = {
 
 const CommRedesign = ({
   profile: { profile, loading },
-  addObqCommRedesign,
-  getCurrentProfile
+  addData,
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -48,12 +46,20 @@ const CommRedesign = ({
 
   const { success, criteria, notMet, one, two, think } = formData;
 
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day1/obq/comm-redesign", true, formData);
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addObqCommRedesign(formData);
+    addData("day1/obq/comm-redesign", true, formData);
   };
 
   return (
@@ -159,9 +165,33 @@ const CommRedesign = ({
                   ></textarea>
                 </div>
               </fieldset>
-              <button className='btn btn-primary' type='submit'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day1/test-eval'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day1/ceiling-fly'
+                ></button>
+              </div>
             </form>
             <p className='last-redesign'>
               <span>Redesign:</span> Make modifications to your bridge, and draw
@@ -175,7 +205,7 @@ const CommRedesign = ({
 };
 
 CommRedesign.propTypes = {
-  addObqCommRedesign: PropTypes.func.isRequired,
+  addData: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -185,6 +215,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  addObqCommRedesign,
+  addData,
   getCurrentProfile
 })(withRouter(CommRedesign));

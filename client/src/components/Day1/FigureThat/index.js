@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addObqFigureThat, getCurrentProfile } from "../../../actions/profile";
+import { addData, getCurrentProfile } from "../../../actions/profile";
 
 import Spinner from "../../layout/Spinner";
 import Pie from "../../../assets/img/obq/company-pie.png";
@@ -30,8 +30,9 @@ const initialState = {
 
 const FigureThat = ({
   profile: { profile, loading },
-  addObqFigureThat,
-  getCurrentProfile
+  addData,
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -64,12 +65,20 @@ const FigureThat = ({
     solveProblem
   } = formData;
 
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day1/obq/figure-that", true, formData);
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addObqFigureThat(formData);
+    addData("day1/obq/figure-that", true, formData);
   };
 
   return (
@@ -314,9 +323,33 @@ const FigureThat = ({
                   ></textarea>
                 </div>
 
-                <button className='btn btn-primary' type='submit'>
-                  Save
-                </button>
+                <div className='submit-btns'>
+                  <button
+                    type='submit'
+                    className='submit-left'
+                    onClick={arrowClick}
+                    name='left-button'
+                    value='/day1/edp'
+                  ></button>
+
+                  <button
+                    type='submit'
+                    className='btn btn-primary my-1 main-save'
+                    name='save-button'
+                    value='save'
+                  >
+                    {" "}
+                    Save
+                  </button>
+
+                  <button
+                    type='submit'
+                    className=' submit-right'
+                    onClick={arrowClick}
+                    name='right-button'
+                    value='/day1/research'
+                  ></button>
+                </div>
               </form>
             </div>
           </div>
@@ -327,7 +360,7 @@ const FigureThat = ({
 };
 
 FigureThat.propTypes = {
-  addObqFigureThat: PropTypes.func.isRequired,
+  addData: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -337,6 +370,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  addObqFigureThat,
+  addData,
   getCurrentProfile
 })(withRouter(FigureThat));

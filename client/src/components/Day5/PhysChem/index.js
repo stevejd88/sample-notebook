@@ -37,7 +37,8 @@ const initialState = {
 const PhysChem = ({
   profile: { profile, loading },
   addData,
-  getCurrentProfile
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -73,6 +74,14 @@ const PhysChem = ({
     braidChemIs,
     braidWhy
   } = formData;
+
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day5/phys-chem", true, formData);
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -497,9 +506,32 @@ const PhysChem = ({
                 {/* end change-identity div */}
               </fieldset>
 
-              <button className='btn btn-primary' type='submit'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day5/fluids'
+                ></button>
+              </div>
             </Form>
           </div>
         </Fragment>

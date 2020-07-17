@@ -29,7 +29,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     e.preventDefault();
     if (password !== password2) {
       setAlert("Passwords do not match", "danger");
-    } else if (signCode !== "gigabyte") {
+    } else if (signCode !== "qwerty") {
       setAlert("Please enter correct Sign-up Code", "danger");
     } else {
       register({ username, password });

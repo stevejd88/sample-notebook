@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addEnegy, getCurrentProfile } from "../../../actions/profile";
+import { addData, getCurrentProfile } from "../../../actions/profile";
 import Spinner from "../../layout/Spinner";
 
 import Heat from "../../../assets/img/day3/fire.png";
@@ -25,8 +25,9 @@ const initialState = {
 
 const Energy = ({
   profile: { profile, loading },
-  addEnegy,
-  getCurrentProfile
+  addData,
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -44,12 +45,20 @@ const Energy = ({
 
   const { energyIs, heat, light, mech, electrical, sound } = formData;
 
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day3/energy", true, formData);
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addEnegy(formData);
+    addData("day3/energy", true, formData);
   };
   return (
     <Fragment>
@@ -167,9 +176,33 @@ const Energy = ({
                   </Form.Row>
                 </div>
               </fieldset>
-              <button className='btn btn-primary' type='submit'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day3/mars'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day3/sound-energy'
+                ></button>
+              </div>
             </Form>
           </div>
         </Fragment>
@@ -179,7 +212,7 @@ const Energy = ({
 };
 
 Energy.propTypes = {
-  addEnegy: PropTypes.func.isRequired,
+  addData: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -188,6 +221,6 @@ const mapStateToProps = (state) => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps, { addEnegy, getCurrentProfile })(
+export default connect(mapStateToProps, { addData, getCurrentProfile })(
   withRouter(Energy)
 );

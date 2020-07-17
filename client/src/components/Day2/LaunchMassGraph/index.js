@@ -4,11 +4,7 @@ import Col from "react-bootstrap/Col";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  addLaunchMassGraph,
-  addLaunchMassGraphRocket,
-  getCurrentProfile
-} from "../../../actions/profile";
+import { addData, getCurrentProfile } from "../../../actions/profile";
 import CanvasDraw from "react-canvas-draw";
 
 import Spinner from "../../layout/Spinner";
@@ -26,9 +22,9 @@ const initialState = {
 
 const LaunchMassGraph = ({
   profile: { profile, loading },
-  addLaunchMassGraph,
-  addLaunchMassGraphRocket,
-  getCurrentProfile
+  addData,
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -54,14 +50,25 @@ const LaunchMassGraph = ({
 
   let { day2MassRocket } = formData;
 
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day2/launch/mass/graph", true, formData);
+    if (!profile.day2MassRocket) {
+      addData("day2/launch/mass/graph/rocket", false, formData);
+    }
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addLaunchMassGraph(formData);
+    addData("day2/launch/mass/graph", true, formData);
     if (!profile.day2MassRocket) {
-      addLaunchMassGraphRocket(formData);
+      addData("day2/launch/mass/graph/rocket", false, formData);
     }
   };
 
@@ -224,9 +231,33 @@ const LaunchMassGraph = ({
                   </Col>
                 </Form.Row>
               </fieldset>
-              <button className='btn btn-primary' type='submit'>
-                Submit
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day2'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day2/launch-displacement'
+                ></button>
+              </div>
             </Form>
           </section>
         </Fragment>
@@ -236,8 +267,7 @@ const LaunchMassGraph = ({
 };
 
 LaunchMassGraph.propTypes = {
-  addLaunchMassGraph: PropTypes.func.isRequired,
-  addLaunchMassGraphRocket: PropTypes.func.isRequired,
+  addData: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -247,7 +277,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  addLaunchMassGraph,
-  addLaunchMassGraphRocket,
+  addData,
   getCurrentProfile
 })(withRouter(LaunchMassGraph));

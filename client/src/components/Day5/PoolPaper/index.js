@@ -27,7 +27,8 @@ const initialState = {
 const PoolPaper = ({
   profile: { profile, loading },
   addData,
-  getCurrentProfile
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -59,6 +60,23 @@ const PoolPaper = ({
   let { day5PoolDraw } = formData;
   let { day5bridgeDraw } = formData;
   let { day5ShipsDraw } = formData;
+
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day5/fluid-stations", true, formData);
+    if (!profile.day5PoolDraw) {
+      addData("day5/fluid-pool/draw", false, formData);
+    }
+    if (!profile.day5bridgeDraw) {
+      addData("day5/fluid-bridge/draw", false, formData);
+    }
+    if (!profile.day5ShipsDraw) {
+      addData("day5/fluid-ships/draw", false, formData);
+    }
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -428,9 +446,33 @@ const PoolPaper = ({
                 </div>
               </fieldset>
 
-              <button className='btn btn-primary' type='submit'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day5/fluids'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day5/fluid-stations/contd'
+                ></button>
+              </div>
             </Form>
           </div>
         </Fragment>

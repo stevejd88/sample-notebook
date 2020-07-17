@@ -26,7 +26,8 @@ const initialState = {
 const ThermalEnergy = ({
   profile: { profile, loading },
   addData,
-  getCurrentProfile
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -54,6 +55,23 @@ const ThermalEnergy = ({
   let { day3HeatRoomDraw } = formData;
   let { day3HeatColdDraw } = formData;
   let { day3HeatWarmDraw } = formData;
+
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day3/thermal", true, formData);
+    if (!profile.day3HeatRoomDraw) {
+      addData("day3/themal/room-draw", false, formData);
+    }
+    if (!profile.day3HeatColdDraw) {
+      addData("day3/themal/cold-draw", false, formData);
+    }
+    if (!profile.day3HeatWarmDraw) {
+      addData("day3/themal/warm-draw", false, formData);
+    }
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -349,9 +367,33 @@ const ThermalEnergy = ({
                   </Form.Group>
                 </Form.Row>
               </fieldset>
-              <button className='btn btn-primary' type='submit'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day3/light-energy'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day3/matter'
+                ></button>
+              </div>
             </Form>
           </div>
         </Fragment>

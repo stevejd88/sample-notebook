@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense, lazy } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -6,15 +6,16 @@ import { BrowserRouter as Router, Switch, Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { getCurrentProfile } from "../../actions/profile";
 import PrivateRoute from "../routing/PrivateRoute";
-import Pop from "./Pop";
-import PopData from "./PopData";
-import PopGraph from "./PopGraph";
-import Solubility from "./Solubility";
-import Chromatography from "./Chromatography";
-import KineticEnergy from "./KineticEnergy";
-import PhasesMatter from "./PhasesMatter";
 
 import "./day4.scss";
+
+const Pop = lazy(() => import("./Pop"));
+const PopData = lazy(() => import("./PopData"));
+const PopGraph = lazy(() => import("./PopGraph"));
+const Solubility = lazy(() => import("./Solubility"));
+const Chromatography = lazy(() => import("./Chromatography"));
+const KineticEnergy = lazy(() => import("./KineticEnergy"));
+const PhasesMatter = lazy(() => import("./PhasesMatter"));
 
 const Day4 = ({ profile: { profile }, getCurrentProfile, match }) => {
   useEffect(() => {
@@ -23,6 +24,7 @@ const Day4 = ({ profile: { profile }, getCurrentProfile, match }) => {
 
   return profile !== null ? (
     <Router>
+      <Suspense fallback={<div>Loading...</div>}></Suspense>
       <h1 className='day-h1'>Day 4</h1>
       <Navbar className='days-nav'>
         <Nav className='mr-auto'>

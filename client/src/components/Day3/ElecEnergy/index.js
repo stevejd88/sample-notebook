@@ -30,7 +30,8 @@ const initialState = {
 const ElectricalEnergy = ({
   profile: { profile, loading },
   addData,
-  getCurrentProfile
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -58,6 +59,17 @@ const ElectricalEnergy = ({
   } = formData;
 
   let { day3ElectricalDraw } = formData;
+
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day3/elecrtical", true, formData);
+    if (!profile.day3ElectricalDraw) {
+      addData("day3/electrical/draw", false, formData);
+    }
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -328,9 +340,33 @@ const ElectricalEnergy = ({
                   </Form.Group>
                 </Form.Row>
               </fieldset>
-              <button className='btn btn-primary' type='submit'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day3/mechanical-energy'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day3/light-energy'
+                ></button>
+              </div>
             </Form>
           </div>
         </Fragment>

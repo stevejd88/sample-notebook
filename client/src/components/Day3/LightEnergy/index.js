@@ -38,7 +38,8 @@ const initialState = {
 const LightEnergy = ({
   profile: { profile, loading },
   addData,
-  getCurrentProfile
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -79,6 +80,26 @@ const LightEnergy = ({
   let { day3LightFilterDraw } = formData;
   let { day3LightMirrorsDraw } = formData;
   let { day3LightWaterDraw } = formData;
+
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day3/light", true, formData);
+    if (!profile.day3LightWoodDraw) {
+      addData("day3/light/wood-draw", false, formData);
+    }
+    if (!profile.day3LightFilterDraw) {
+      addData("day3/light/filter-draw", false, formData);
+    }
+    if (!profile.day3LightMirrorsDraw) {
+      addData("day3/light/mirrors-draw", false, formData);
+    }
+    if (!profile.day3LightWaterDraw) {
+      addData("day3/light/water-draw", false, formData);
+    }
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -665,9 +686,33 @@ const LightEnergy = ({
                   </div>
                 </div>
               </fieldset>
-              <button className='btn btn-primary' type='submit'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day3/electrical-energy'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day3/thermal-energy'
+                ></button>
+              </div>
             </Form>
           </div>
         </Fragment>

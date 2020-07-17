@@ -1,0 +1,26 @@
+@import "../../../../utilities/scss/utils.scss";
+
+.carousel {
+  margin-top: 2rem;
+  h3,
+  p {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+    padding: 0.2rem;
+  }
+
+  h3 {
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: black;
+    font-size: 1.125rem;
+  }
+
+  img {
+    border-radius: 5px;
+  }
+}

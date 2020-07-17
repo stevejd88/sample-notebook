@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addLaunchMass, getCurrentProfile } from "../../../actions/profile";
+import { addData, getCurrentProfile } from "../../../actions/profile";
 
 import Spinner from "../../layout/Spinner";
 import "./launchmass.scss";
@@ -21,8 +21,9 @@ const initialState = {
 
 const LaunchMass = ({
   profile: { profile, loading },
-  addLaunchMass,
-  getCurrentProfile
+  addData,
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -47,12 +48,20 @@ const LaunchMass = ({
     distance3eraser
   } = formData;
 
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day2/launch/mass", true, formData);
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addLaunchMass(formData);
+    addData("day2/launch/mass", true, formData);
   };
 
   return (
@@ -198,9 +207,32 @@ const LaunchMass = ({
                 </div>
               </fieldset>
 
-              <button className='btn btn-primary' type='submit'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day2/mass-graph'
+                ></button>
+              </div>
             </Form>
           </section>
         </Fragment>
@@ -210,7 +242,7 @@ const LaunchMass = ({
 };
 
 LaunchMass.propTypes = {
-  addLaunchMass: PropTypes.func.isRequired,
+  addData: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -219,6 +251,6 @@ const mapStateToProps = (state) => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps, { addLaunchMass, getCurrentProfile })(
+export default connect(mapStateToProps, { addData, getCurrentProfile })(
   withRouter(LaunchMass)
 );

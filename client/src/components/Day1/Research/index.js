@@ -2,8 +2,12 @@ import React, { Fragment, useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addObqResearch, getCurrentProfile } from "../../../actions/profile";
+import { addData, getCurrentProfile } from "../../../actions/profile";
 import Spinner from "../../layout/Spinner";
+
+import BridgeModal from "./BridgeModal";
+
+import "./research.scss";
 
 const initialState = {
   bSpan: false,
@@ -26,8 +30,9 @@ const initialState = {
 
 const Research = ({
   profile: { profile, loading },
-  addObqResearch,
-  getCurrentProfile
+  addData,
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -61,9 +66,17 @@ const Research = ({
     fTemp
   } = formData;
 
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day1/obq/research", true, formData);
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
-    addObqResearch(formData);
+    addData("day1/obq/research", true, formData);
   };
 
   return (
@@ -72,7 +85,7 @@ const Research = ({
         <Spinner />
       ) : (
         <Fragment>
-          <div className='obq-research container'>
+          <div id='obq-research-container container'>
             <h3>Step 2: Research the Problem</h3>
             <p>
               <strong>Research each type of bridge with your team.</strong>
@@ -436,10 +449,36 @@ const Research = ({
                 </table>
               </div>
 
-              <button className='btn btn-primary' type='submit'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day1/figure-that'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day1/develop-choose'
+                ></button>
+              </div>
             </form>
+
+            <BridgeModal />
           </div>
         </Fragment>
       )}
@@ -456,6 +495,6 @@ const mapStateToProps = (state) => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps, { addObqResearch, getCurrentProfile })(
+export default connect(mapStateToProps, { addData, getCurrentProfile })(
   withRouter(Research)
 );

@@ -29,7 +29,8 @@ const initialState = {
 const PopGraph = ({
   profile: { profile, loading },
   addData,
-  getCurrentProfile
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -60,6 +61,17 @@ const PopGraph = ({
   } = formData;
 
   let { day4PopDraw } = formData;
+
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day4/pop-results", true, formData);
+    if (!profile.day4PopDraw) {
+      addData("day4/pop/draw", false, formData);
+    }
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -296,9 +308,33 @@ const PopGraph = ({
                   </Form.Row>
                 </div>
               </fieldset>
-              <button className='btn btn-primary' type='submit'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day4/pop-data'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day4/kinetic-energy'
+                ></button>
+              </div>
             </Form>
           </div>
         </Fragment>

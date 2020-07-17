@@ -3,11 +3,7 @@ import { withRouter } from "react-router-dom";
 import { Form, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  addRobotics,
-  addRoboticsDraw,
-  getCurrentProfile
-} from "../../../actions/profile";
+import { addData, getCurrentProfile } from "../../../actions/profile";
 import CanvasDraw from "react-canvas-draw";
 import Spinner from "../../layout/Spinner";
 import RoboDog from "../../../assets/img/day3/robo-dog.png";
@@ -27,9 +23,9 @@ const initialState = {
 
 const Robotics = ({
   profile: { profile, loading },
-  addRobotics,
-  addRoboticsDraw,
-  getCurrentProfile
+  addData,
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -56,14 +52,25 @@ const Robotics = ({
 
   let { day3RoboticsDraw } = formData;
 
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day3/robotics", true, formData);
+    if (!profile.day3RoboticsDraw) {
+      addData("day3/robotics/draw", false, formData);
+    }
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addRobotics(formData);
+    addData("day3/robotics", true, formData);
     if (!profile.day3RoboticsDraw) {
-      addRoboticsDraw(formData);
+      addData("day3/robotics/draw", false, formData);
     }
   };
 
@@ -75,6 +82,7 @@ const Robotics = ({
         <Fragment>
           <div id='robotics-container'>
             <h2>Robotics</h2>
+
             <Form onSubmit={onSubmit}>
               <fieldset className='engage-robots'>
                 <legend>
@@ -247,9 +255,32 @@ const Robotics = ({
                 </div>
               </fieldset>
 
-              <button className='btn btn-primary' type='submit'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day3/mars'
+                ></button>
+              </div>
             </Form>
           </div>
         </Fragment>
@@ -259,8 +290,7 @@ const Robotics = ({
 };
 
 Robotics.propTypes = {
-  addRobotics: PropTypes.func.isRequired,
-  addRoboticsDraw: PropTypes.func.isRequired,
+  addData: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -270,7 +300,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  addRobotics,
-  addRoboticsDraw,
+  addData,
   getCurrentProfile
 })(withRouter(Robotics));

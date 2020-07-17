@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addObqPrototype, getCurrentProfile } from "../../../actions/profile";
+import { addData, getCurrentProfile } from "../../../actions/profile";
 import CanvasDraw from "react-canvas-draw";
 import Spinner from "../../layout/Spinner";
 
@@ -14,8 +14,9 @@ const initialState = {
 
 const BridgePrototype = ({
   profile: { profile, loading },
-  addObqPrototype,
-  getCurrentProfile
+  addData,
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -25,11 +26,21 @@ const BridgePrototype = ({
     if (!profile) getCurrentProfile();
   }, [profile, getCurrentProfile]);
 
+  const arrowClick = (e) => {
+    e.preventDefault();
+    if (!profile.day1Prototype) {
+      addData("day1/obq/prototype", false, formData);
+    }
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
 
     if (!profile.day1Prototype) {
-      addObqPrototype(formData);
+      addData("day1/obq/prototype", false, formData);
     }
   };
 
@@ -100,14 +111,39 @@ const BridgePrototype = ({
                 hideGrid={false}
                 saveData={profile.day1Prototype}
               />
-              <button type='submit' className='btn btn-primary sbm-btm'>
-                Submit
-              </button>
+              <span className='bridge-supplies'>
+                <strong>Bridge Supplies:</strong> Popsicle Sticks, Styrofoam
+                balls, Fetuccine noodles, Lasagna Noodles
+              </span>
+
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day1/develop-choose'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day1/test-eval'
+                ></button>
+              </div>
             </form>
-            <span className='bridge-supplies'>
-              <strong>Bridge Supplies:</strong> Popsicle Sticks, Styrofoam
-              balls, Fetuccine noodles, Lasagna Noodles
-            </span>
           </div>
         </Fragment>
       )}
@@ -116,7 +152,7 @@ const BridgePrototype = ({
 };
 
 BridgePrototype.propTypes = {
-  addObqPrototype: PropTypes.func.isRequired,
+  addData: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -126,6 +162,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  addObqPrototype,
+  addData,
   getCurrentProfile
 })(withRouter(BridgePrototype));

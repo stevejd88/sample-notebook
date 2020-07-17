@@ -4,10 +4,7 @@ import Col from "react-bootstrap/Col";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  addLittleChallenge,
-  getCurrentProfile
-} from "../../../actions/profile";
+import { addData, getCurrentProfile } from "../../../actions/profile";
 import Spinner from "../../layout/Spinner";
 
 import "./littlechallenge.scss";
@@ -23,8 +20,9 @@ const initialState = {
 
 const LittleChallenge = ({
   profile: { profile, loading },
-  addLittleChallenge,
-  getCurrentProfile
+  addData,
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -48,12 +46,20 @@ const LittleChallenge = ({
     demonstrators
   } = formData;
 
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day2/littleChallenge", true, formData);
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addLittleChallenge(formData);
+    addData("day2/littleChallenge", true, formData);
   };
 
   return (
@@ -212,9 +218,33 @@ const LittleChallenge = ({
                   </div>
                 </div>
               </fieldset>
-              <button type='submit' className='btn btn-primary sbm-btm'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day2/little-bits'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day2/little-drawing'
+                ></button>
+              </div>
             </Form>
           </div>
         </Fragment>
@@ -224,7 +254,7 @@ const LittleChallenge = ({
 };
 
 LittleChallenge.propTypes = {
-  addLittleChallenge: PropTypes.func.isRequired,
+  addData: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -234,6 +264,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  addLittleChallenge,
+  addData,
   getCurrentProfile
 })(withRouter(LittleChallenge));

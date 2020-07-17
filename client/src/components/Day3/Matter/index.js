@@ -25,7 +25,8 @@ const initialState = {
 const Matter = ({
   profile: { profile, loading },
   addData,
-  getCurrentProfile
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -42,6 +43,14 @@ const Matter = ({
   }, [loading, getCurrentProfile, profile]);
 
   const { matter, atomBond, sameAtoms, difAtoms } = formData;
+
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day3/matter", true, formData);
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -131,9 +140,32 @@ const Matter = ({
                 </Form.Row>
               </fieldset>
 
-              <button className='btn btn-primary' type='submit'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day3/thermal-energy'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                ></button>
+              </div>
 
               <p className='kinetic-energy'>
                 <span>Kinetic</span> Energy &#58; <span>Movement</span> Energy

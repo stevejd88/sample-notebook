@@ -6,6 +6,14 @@
   @include mq("sm") {
     @include flex-me($dir: column, $just: center);
   }
+
+  .navbar-brand {
+    padding: 0;
+  }
+
+  .brand-name {
+    color: $primary-color;
+  }
 }
 
 .main-nav-link {

@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addObqEdp, getCurrentProfile } from "../../../actions/profile";
+import { addData, getCurrentProfile } from "../../../actions/profile";
 import Spinner from "../../layout/Spinner";
 import edpPic from "../../../assets/img/obq/edp.png";
 
@@ -21,8 +21,9 @@ const initialState = {
 
 const EDP = ({
   profile: { profile, loading },
-  addObqEdp,
-  getCurrentProfile
+  addData,
+  getCurrentProfile,
+  history
 }) => {
   const [formData, setFormData] = useState(initialState);
 
@@ -40,12 +41,20 @@ const EDP = ({
 
   const { step1, step2, step3, step4, step5, step6, step7, step8 } = formData;
 
+  const arrowClick = (e) => {
+    e.preventDefault();
+    addData("day1/obq/edp", true, formData);
+    if (e.target.value) {
+      history.push(e.target.value);
+    }
+  };
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addObqEdp(formData);
+    addData("day1/obq/edp", true, formData);
   };
 
   return (
@@ -158,9 +167,33 @@ const EDP = ({
                   </span>
                 </li>
               </ul>
-              <button type='submit' className='btn btn-primary my-1'>
-                Save
-              </button>
+              <div className='submit-btns'>
+                <button
+                  type='submit'
+                  className='submit-left'
+                  onClick={arrowClick}
+                  name='left-button'
+                  value='/day1'
+                ></button>
+
+                <button
+                  type='submit'
+                  className='btn btn-primary my-1 main-save'
+                  name='save-button'
+                  value='save'
+                >
+                  {" "}
+                  Save
+                </button>
+
+                <button
+                  type='submit'
+                  className=' submit-right'
+                  onClick={arrowClick}
+                  name='right-button'
+                  value='/day1/figure-that'
+                ></button>
+              </div>
             </form>
           </div>
         </Fragment>
@@ -170,7 +203,7 @@ const EDP = ({
 };
 
 EDP.propTypes = {
-  addObqEdp: PropTypes.func.isRequired,
+  addData: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -179,6 +212,6 @@ const mapStateToProps = (state) => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps, { addObqEdp, getCurrentProfile })(
+export default connect(mapStateToProps, { addData, getCurrentProfile })(
   withRouter(EDP)
 );

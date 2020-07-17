@@ -62,6 +62,51 @@ li {
   }
 }
 
+.submit-btns {
+  @include flex-me($dir: row, $just: center);
+  margin: 0 auto;
+  margin-top: 1rem;
+
+  .main-save {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    @include mq("md") {
+      margin-right: 1.5rem;
+      margin-left: 1.5rem;
+    }
+  }
+
+  .submit-left {
+    height: 0;
+    width: 0;
+    border-left: 48px solid $white;
+    border-right: 48px solid $link-color;
+    border-bottom: 48px solid $white;
+    border-top: 48px solid $white;
+    &:hover {
+      border-right: 48px solid $primary-color;
+    }
+    &:active {
+      border-right: 48px solid $secondary-color;
+    }
+  }
+
+  .submit-right {
+    height: 0;
+    width: 0;
+    border-left: 48px solid $link-color;
+    border-right: 48px solid $white;
+    border-bottom: 48px solid $white;
+    border-top: 48px solid $white;
+    &:hover {
+      border-left: 48px solid $primary-color;
+    }
+    &:active {
+      border-left: 48px solid $secondary-color;
+    }
+  }
+}
+
 .btns-scu {
   margin-top: 1rem;
 
@@ -185,6 +230,10 @@ legend {
       color: $primary-color;
       margin-bottom: 0.37rem;
       margin-right: 0.37rem;
+    }
+    .btn:hover {
+      background-color: $primary-color;
+      color: $white;
     }
   }
 

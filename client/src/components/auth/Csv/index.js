@@ -1,19 +1,18 @@
-import React, { Fragment, useState } from "react";
-import { Redirect, Link } from "react-router-dom";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { setAlert } from "../../../actions/alert";
 import { register } from "../../../actions/auth";
 import Logo from "../../../assets/img/sb-logo.jpg";
 import PropTypes from "prop-types";
 
-// import "./register.scss";
+import "./csv.scss";
 
-const Csv = ({ setAlert, register, isAuthenticated }) => {
+const Csv = ({ setAlert, register }) => {
   const parse = require("csv-parse");
   const output = [];
 
   const onChange = (e) => {
-    const f = e.target.files[0];
+    const file = e.target.files[0];
 
     const parser = parse({
       delimeter: ","
@@ -35,16 +34,28 @@ const Csv = ({ setAlert, register, isAuthenticated }) => {
         parser.write(e.target.result);
         parser.end();
       };
-    })(f);
-    reader.readAsText(f);
+    })(file);
+    reader.readAsText(file);
+  };
+
+  let signCode = " ";
+  const code = (e) => {
+    signCode = e.target.value;
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    for (let i = 0; i < output.length; i++) {
-      let username = output[i][0];
-      let password = output[i][1];
-      register({ username, password });
+    if (signCode !== "qwerty") {
+      setAlert("Please enter correct Sign-up Code", "danger");
+    } else {
+      for (let i = 0; i < output.length; i++) {
+        let username = output[i][0];
+        let password = output[i][1];
+        register({ username, password });
+        if (i === output.length - 1) {
+          setAlert("User profiles Created", "success");
+        }
+      }
     }
   };
 
@@ -56,23 +67,26 @@ const Csv = ({ setAlert, register, isAuthenticated }) => {
           <h1>Upload Multiple Users</h1>
         </div>
         <form id='csv-form' onSubmit={onSubmit}>
+          <label htmlFor='fileupload'> Select a file to upload</label>
           <input
             type='file'
             name='fileupload'
             id='fileupload'
             onChange={onChange}
+            accept='.csv'
           />
-          <label htmlFor='fileupload'> Select a file to upload</label>
-
+          <input
+            type='text'
+            placeholder='Sign-up Code'
+            name='signCode'
+            onChange={(e) => code(e)}
+          />
           <input
             type='submit'
             className='registerButton btn btn-lg btn-outline-primary'
             value='Register'
           />
         </form>
-        <p className='my-1'>
-          Already have an account? <Link to='/login'>Sign In</Link>
-        </p>
       </section>
     </Fragment>
   );
@@ -84,8 +98,4 @@ Csv.propTypes = {
   isAuthenticated: PropTypes.bool
 };
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated
-});
-
-export default connect(mapStateToProps, { setAlert, register })(Csv);
+export default connect(null, { setAlert, register })(Csv);
